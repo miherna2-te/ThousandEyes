@@ -21,4 +21,8 @@ The script will produce an output like the one below:
 
 ![Agents](agents.png)
 
-Thanks.
+In addition, the script will generate a CSV report named **tests_to_agents.csv** in the same directory where the script is hosted.
+
+![CSV](csv.png)
+
+Regards
