@@ -1,4 +1,5 @@
 import requests
+import csv
 from rich.console import Console
 from rich.table import Table
 from getpass import getpass
@@ -8,10 +9,12 @@ table = Table(title="Agents - Tests List")
 table.add_column("TEST NAME", justify="left", style="cyan", no_wrap=True)
 table.add_column("TEST ID", style="magenta")
 table.add_column("TEST TYPE", justify="left", style="green")
-table.add_column("AGENT #1", justify="left", style="green")
+table.add_column("AGENTS", justify="left", style="green")
+"""
 table.add_column("AGENT #2", justify="left", style="green")
 table.add_column("AGENT #3", justify="left", style="green")
 table.add_column("AGENT #4", justify="left", style="green")
+"""
 
 
 username = input("Email: ")
@@ -38,24 +41,13 @@ for test in ALL_TESTS_CONFIGURED:
     test_type = tests_details.get("test")[0].get("type")
     agents_in_test = tests_details.get("test")[0].get("agents", None)
 
-    agents_list = []
-    for index in range(4):
-        try:
-            agent = agents_in_test[index]
+    agents_list = ""
+    if agents_in_test != None:
+        for agent in agents_in_test:
             agent_name = agent.get("agentName")
-            agents_list.append(agent_name)
-        except (IndexError, TypeError):
-            agents_list.append(None)
+            agents_list += f"{agent_name}, "
+    table.add_row(test_name, test_id, test_type, agents_list)
 
-    table.add_row(
-        test_name,
-        test_id,
-        test_type,
-        agents_list[0],
-        agents_list[1],
-        agents_list[2],
-        agents_list[3],
-    )
 
 console = Console()
 console.print(table)
