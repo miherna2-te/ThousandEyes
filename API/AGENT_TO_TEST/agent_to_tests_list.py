@@ -10,12 +10,6 @@ table.add_column("TEST NAME", justify="left", style="cyan", no_wrap=True)
 table.add_column("TEST ID", style="magenta")
 table.add_column("TEST TYPE", justify="left", style="green")
 table.add_column("AGENTS", justify="left", style="green")
-"""
-table.add_column("AGENT #2", justify="left", style="green")
-table.add_column("AGENT #3", justify="left", style="green")
-table.add_column("AGENT #4", justify="left", style="green")
-"""
-
 
 username = input("Email: ")
 api_key = getpass("Token: ")
