@@ -39,7 +39,7 @@ for test in ALL_TESTS_CONFIGURED:
     if agents_in_test != None:
         for agent in agents_in_test:
             agent_name = agent.get("agentName")
-            agents_list += f"{agent_name}, "
+            agents_list += f"{agent_name}\n"
     table.add_row(test_name, test_id, test_type, agents_list)
 
 
