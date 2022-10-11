@@ -1,3 +1,13 @@
+import requests
+import csv
+from getpass import getpass
+
+#######################################################
+# User needs to provide authentication parameters
+#######################################################
+USERNAME = input("Username: ")
+BASIC_TOKEN = getpass("Basic Token: ")
+HEADERS = {"content-type": "application/json"}
 
 #######################################################
 # This call returns all the tests configured
@@ -17,10 +27,11 @@ ALL_TESTS_CONFIGURED = ALL_TESTS_CONFIGURED.get("test")
 #######################################################
 # Opening a CSV file and formatting its headers
 #######################################################
-with open("tests_to_agents.csv", mode="w") as CSV_FILE:
+with open("tests_to_agents_details.csv", mode="w") as CSV_FILE:
     FIELDS = [
         "TEST_NAME",
         "TEST_ID",
+        "CREATED_BY",
         "CREATED",
         "MODIFIED",
         "MODIFIED_BY",
@@ -45,6 +56,7 @@ with open("tests_to_agents.csv", mode="w") as CSV_FILE:
     for test in ALL_TESTS_CONFIGURED:
         test_name = test.get("testName")
         test_id = test.get("testId")
+        created_by = test.get("createdBy")
         created_date = test.get("createdDate")
         modified_date = test.get("modifiedDate")
         modified_by = test.get("modifiedBy")
@@ -91,6 +103,7 @@ with open("tests_to_agents.csv", mode="w") as CSV_FILE:
                             {
                                 "TEST_NAME": test_name,
                                 "TEST_ID": test_id,
+                                "CREATED_BY": created_by,
                                 "CREATED": created_date,
                                 "MODIFIED": modified_date,
                                 "MODIFIED_BY": modified_by,
@@ -109,6 +122,7 @@ with open("tests_to_agents.csv", mode="w") as CSV_FILE:
                             {
                                 "TEST_NAME": "",
                                 "TEST_ID": "",
+                                "CREATED_BY": '',
                                 "CREATED": "",
                                 "MODIFIED": "",
                                 "MODIFIED_BY": "",
@@ -134,6 +148,7 @@ with open("tests_to_agents.csv", mode="w") as CSV_FILE:
                         {
                             "TEST_NAME": test_name,
                             "TEST_ID": test_id,
+                            "CREATED_BY": created_by,
                             "CREATED": created_date,
                             "MODIFIED": modified_date,
                             "MODIFIED_BY": modified_by,
