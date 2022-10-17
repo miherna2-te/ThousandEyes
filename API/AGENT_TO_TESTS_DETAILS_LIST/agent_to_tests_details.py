@@ -12,8 +12,6 @@ HEADERS = {"content-type": "application/json"}
 #######################################################
 # This call returns all the tests configured
 #  by the user, then the data is formatted in JSON.
-# It gets the key "test"
-# to go one level down in the hierarchy
 #######################################################
 TESTS_API = requests.get(
     "https://api.thousandeyes.com/v6/tests.json",
@@ -46,12 +44,11 @@ with open("tests_to_agents_details.csv", mode="w") as CSV_FILE:
     ]
     WRITER = csv.DictWriter(CSV_FILE, fieldnames=FIELDS)
     WRITER.writeheader()
-    
+
     #######################################################
-    # Walking through all the tests and getting multiple
-    # values, the test_id is used to make an additional
-    # call to the API and get additional information
-    # such as the agents and if the test is shared
+    # Getting multiple values, the test_id is used 
+    # to make an additional call to the API and 
+    # get additional information agents and if the test is shared
     #######################################################
     for test in ALL_TESTS_CONFIGURED:
         test_name = test.get("testName")
@@ -73,7 +70,7 @@ with open("tests_to_agents_details.csv", mode="w") as CSV_FILE:
         #######################################################
         # The call returns nested data, therefore it is
         # required to walk down in the hierarchy using multiple
-        # types of data to extract the intended value. 
+        # types of data to extract the intended value.
         # While doing this information the data
         # is saved in the same variable
         #######################################################
@@ -87,78 +84,51 @@ with open("tests_to_agents_details.csv", mode="w") as CSV_FILE:
         shared_accounts = " - ".join(shared_accounts)
         #######################################################
         # Verifying if there are agents configured in the test
-        # The number of the agent is taken into account,
-        # if there is more than one agent for the same test
-        # the consecutive lines will print out only the last
-        # three values: AGENTS_NAME, AGENTS_TYPE and SHARED.
         #######################################################
         if agents_in_test != None:
-            number_agents = 1
             for agent in agents_in_test:
                 agent_name = agent.get("agentName")
                 agent_type = agent.get("agentType")
-                if agent_name:
-                    if number_agents == 1:
-                        WRITER.writerow(
-                            {
-                                "TEST_NAME": test_name,
-                                "TEST_ID": test_id,
-                                "CREATED_BY": created_by,
-                                "CREATED": created_date,
-                                "MODIFIED": modified_date,
-                                "MODIFIED_BY": modified_by,
-                                "TEST_TYPE": test_type,
-                                "PROTOCOL": protocol,
-                                "URL": url,
-                                "ENABLED": enabled,
-                                "ALERTS": alerts,
-                                "AGENTS_NAME": agent_name,
-                                "AGENT_TYPE": agent_type,
-                                "SHARED": shared_accounts,
-                            }
-                        )
-                    else:
-                        WRITER.writerow(
-                            {
-                                "TEST_NAME": "",
-                                "TEST_ID": "",
-                                "CREATED_BY": '',
-                                "CREATED": "",
-                                "MODIFIED": "",
-                                "MODIFIED_BY": "",
-                                "TEST_TYPE": "",
-                                "PROTOCOL": "",
-                                "URL": "",
-                                "ENABLED": "",
-                                "ALERTS": "",
-                                "AGENTS_NAME": agent_name,
-                                "AGENT_TYPE": agent_type,
-                                "SHARED": shared_accounts,
-                            }
-                        )
-                    number_agents += 1
+                WRITER.writerow(
+                    {
+                        "TEST_NAME": test_name,
+                        "TEST_ID": test_id,
+                        "CREATED_BY": created_by,
+                        "CREATED": created_date,
+                        "MODIFIED": modified_date,
+                        "MODIFIED_BY": modified_by,
+                        "TEST_TYPE": test_type,
+                        "PROTOCOL": protocol,
+                        "URL": url,
+                        "ENABLED": enabled,
+                        "ALERTS": alerts,
+                        "AGENTS_NAME": agent_name,
+                        "AGENT_TYPE": agent_type,
+                        "SHARED": shared_accounts,
+                    }
+                )
         #######################################################
         # if there is NOT agents in the test the line
         # will print out the values with the exception
         # of the last three values: AGENTS_NAME,
         # AGENTS_TYPE and SHARED.
         #######################################################
-                else:
-                    WRITER.writerow(
-                        {
-                            "TEST_NAME": test_name,
-                            "TEST_ID": test_id,
-                            "CREATED_BY": created_by,
-                            "CREATED": created_date,
-                            "MODIFIED": modified_date,
-                            "MODIFIED_BY": modified_by,
-                            "TEST_TYPE": test_type,
-                            "PROTOCOL": protocol,
-                            "URL": url,
-                            "ENABLED": enabled,
-                            "ALERTS": alerts,
-                            "AGENTS_NAME": "",
-                            "AGENT_TYPE": "",
-                            "SHARED": "",
-                        }
-                    )
+        else:
+            WRITER.writerow(
+                {
+                    "TEST_NAME": test_name,
+                    "TEST_ID": test_id,
+                    "CREATED_BY": created_by,
+                    "CREATED": created_date,
+                    "MODIFIED": modified_date,
+                    "MODIFIED_BY": modified_by,
+                    "TEST_TYPE": test_type,
+                    "PROTOCOL": protocol,
+                    "URL": url,
+                    "ENABLED": enabled,
+                    "ALERTS": alerts,
+                    "AGENTS_NAME": "",
+                    "AGENT_TYPE": "",
+                    "SHARED": "",
+                }
+            )
