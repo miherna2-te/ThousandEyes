@@ -22,6 +22,6 @@ The script will generate a CSV report named **tests_to_agents_details.csv** in t
 ![CSV](csv_det.png)
 
 ## BDB Version
-If you prefer to conduct the test online without installing and library, you can execute this report using the [BDB Version - te_agent_test_details_list](https://scripts.cisco.com/ui/use/te_agent_test_details_list). This option is only available internally (Cisco's employees).
+If you prefer to conduct the test online without installing any library, you can execute this report using the [BDB Version - te_agent_test_details_list](https://scripts.cisco.com/ui/use/te_agent_test_details_list). This option is only available internally (Cisco's employees).
 
 Regards
