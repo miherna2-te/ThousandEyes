@@ -6,7 +6,6 @@ The script uses the following modules, therefore it is required to have these in
 
 - requests
 - csv
-- rich
 
 ## How to Use
 The script requests the following information:
