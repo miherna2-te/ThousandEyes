@@ -1,8 +1,8 @@
 ## Introduction
-These script provides the name of the agent where the test is running, in addition it provides further details which can be observed in the **output** section in this document. There are two flavors of this script.
+These script provides the name(s) of the agent(s) where the test is running, in addition it provides further details which can be observed in the **output** section in this document. There are two flavors of this script.
 
-1. If the test has multiple agents the line is repeated displaying one agent per line.
-2. If the test has multiple agents, all of them are consolidated in the same row in column K.
+1. **agent_to_tests_details.py**: If the test has multiple agents the line is repeated displaying one agent per line.
+2. **agent_to_tests_details_one_line.py**: If the test has multiple agents, all of them are consolidated in the same row in column K.
 
 ## Requirements
 The script uses the following modules, therefore it is required to have these installed beforehand.
