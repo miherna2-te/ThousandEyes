@@ -55,16 +55,7 @@ def main(USER, TOKEN, AID):
         writer.writeheader()
 
         for test in all_tests_configured:
-            test_name = test.get("testName")
             test_id = test.get("testId")
-            created_date = test.get("createdDate")
-            modified_date = test.get("modifiedDate")
-            modified_by = test.get("modifiedBy")
-            test_type = test.get("type")
-            protocol = test.get("protocol")
-            url = test.get("url")
-            enabled = test.get("enabled")
-            alerts = test.get("alertsEnabled")
             details_url = f"https://api.thousandeyes.com/v6/tests/{test_id}.json"
             test_details = api_get_call(USER, TOKEN, details_url, AID)
             agents_in_test = test_details[0].get("agents")
@@ -72,16 +63,16 @@ def main(USER, TOKEN, AID):
             shared_accounts = [account.get("name") for account in shared_accounts]
             shared_accounts = " - ".join(shared_accounts)
             row =  {
-                    "test_name": test_name,
-                    "test_id": test_id,
-                    "created": created_date,
-                    "modified": modified_date,
-                    "modified_by": modified_by,
-                    "test_type": test_type,
-                    "protocol": protocol,
-                    "url": url,
-                    "enabled": enabled,
-                    "alerts": alerts,
+                    "test_name": test.get("testName"),
+                    "test_id": test.get("testId"),
+                    "created": test.get("createdDate"),
+                    "modified": test.get("modifiedDate"),
+                    "modified_by": test.get("modifiedBy"),
+                    "test_type": test.get("type"),
+                    "protocol": test.get("protocol"),
+                    "url": test.get("url"),
+                    "enabled": test.get("enabled"),
+                    "alerts": test.get("alertsEnabled"),
                     "agent_name": "",
                     "agent_type": "",
                     "shared": shared_accounts,
