@@ -1,5 +1,8 @@
 ## Introduction
-This script provides the name of the agent where the test is running, in addition it provides further details which can be observed in the **output** section in this document.
+These script provides the name of the agent where the test is running, in addition it provides further details which can be observed in the **output** section in this document. There are two flavors of this script.
+
+1. If the test has multiple agents the line is repeated displaying one agent per line.
+2. If the test has multiple agents, all of them are consolidated in the same row in column K.
 
 ## Requirements
 The script uses the following modules, therefore it is required to have these installed beforehand.
@@ -10,8 +13,9 @@ The script uses the following modules, therefore it is required to have these in
 ## How to Use
 The script requests the following information:
 
-Email: 
-Token: 
+- Username (e-mail)
+- Basic Token
+- AID if filtering is required
 
 **Note**: The token is hidden, therefore you will not see anything when typing.
 
