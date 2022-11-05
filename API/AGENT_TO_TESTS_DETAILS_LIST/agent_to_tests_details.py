@@ -1,6 +1,8 @@
+from datetime import datetime
+from getpass import getpass
 import csv
 import requests
-from getpass import getpass
+
 
 USERNAME = input("Provide Username: ")
 BASIC_TOKEN = getpass("Provide Basic Token: ")
@@ -26,7 +28,9 @@ def main(USER, TOKEN, AID):
     tests_url = "https://api.thousandeyes.com/v6/tests.json"
     all_tests_configured = api_get_call(USER, TOKEN, tests_url, AID)
 
-    with open("tests_to_agents_details.csv", mode="w") as csv_file:
+    now = datetime.now()
+    date = now.strftime("%m%d%H%M%S")
+    with open(f"tests_to_agents_{date}.csv", mode="w") as csv_file:
         fields = [
             "test_name",
             "test_id",
