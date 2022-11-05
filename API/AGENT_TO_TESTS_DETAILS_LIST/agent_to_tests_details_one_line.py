@@ -1,6 +1,7 @@
 from datetime import datetime
 from getpass import getpass
 import csv
+import sys
 import requests
 
 USERNAME = input("Provide Username: ")
@@ -17,6 +18,10 @@ def api_get_call(USER, TOKEN, URL, AID = None):
         headers = {"content-type": "application/json"},
         auth=(USER, TOKEN),
     )
+    
+    if response.status_code != 200:
+        print("Invalid Username or Password")
+        sys.exit()
 
     result = response.json()
     result = result.get("test")
