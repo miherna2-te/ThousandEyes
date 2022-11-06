@@ -8,17 +8,18 @@ USERNAME = input("Provide Username: ")
 BASIC_TOKEN = getpass("Provide Basic Token: ")
 AID_FILTER = input("Provide AID filter: ")
 
-def api_get_call(USER, TOKEN, URL, AID = None):
+
+def api_get_call(USER, TOKEN, URL, AID=None):
 
     if len(AID) != 0:
         URL += f"?aid={AID}"
 
     response = requests.get(
         URL,
-        headers = {"content-type": "application/json"},
+        headers={"content-type": "application/json"},
         auth=(USER, TOKEN),
     )
-    
+
     if response.status_code != 200:
         print("Invalid Username or Password")
         sys.exit()
@@ -53,16 +54,7 @@ def main(USER, TOKEN, AID):
         writer.writeheader()
 
         for test in all_tests_configured:
-            test_name = test.get("testName")
             test_id = test.get("testId")
-            created_date = test.get("createdDate")
-            modified_date = test.get("modifiedDate")
-            modified_by = test.get("modifiedBy")
-            test_type = test.get("type")
-            protocol = test.get("protocol")
-            url = test.get("url")
-            enabled = test.get("enabled")
-            alerts = test.get("alertsEnabled")
             details_url = f"https://api.thousandeyes.com/v6/tests/{test_id}.json"
             test_details = api_get_call(USER, TOKEN, details_url, AID)
             agents_in_test = test_details[0].get("agents")
@@ -76,22 +68,23 @@ def main(USER, TOKEN, AID):
                     agent_name = agent.get("agentName")
                     agent_type = agent.get("agentType")
                     agent_information += f"{agent_name} [{agent_type}] - "
-                row =  {
-                        "test_name": test_name,
-                        "test_id": test_id,
-                        "created": created_date,
-                        "modified": modified_date,
-                        "modified_by": modified_by,
-                        "test_type": test_type,
-                        "protocol": protocol,
-                        "url": url,
-                        "enabled": enabled,
-                        "alerts": alerts,
-                        "agents_information": agent_information,
-                        "shared": shared_accounts,
-                    }
+                row = {
+                    "test_name": test.get("testName"),
+                    "test_id": test_id,
+                    "created": test.get("createdDate"),
+                    "modified": test.get("modifiedDate"),
+                    "modified_by": test.get("modifiedBy"),
+                    "test_type": test.get("type"),
+                    "protocol": test.get("protocol"),
+                    "url": test.get("url"),
+                    "enabled": test.get("enabled"),
+                    "alerts": test.get("alertsEnabled"),
+                    "agents_information": agent_information,
+                    "shared": shared_accounts,
+                }
                 writer.writerow(row)
                 print(row)
+
 
 if __name__ == "__main__":
     main(USERNAME, BASIC_TOKEN, AID_FILTER)
