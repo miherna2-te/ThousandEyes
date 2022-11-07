@@ -4,9 +4,9 @@ import csv
 import sys
 import requests
 
-USERNAME = input("Provide Username: ")
-BASIC_TOKEN = getpass("Provide Basic Token: ")
-AID_FILTER = input("Provide AID filter: ")
+USERNAME = input("Username: ")
+BASIC_TOKEN = getpass("Basic Token: ")
+AID_FILTER = input("AID: ")
 
 
 def api_get_call(USER, TOKEN, URL, AID=None):
@@ -62,7 +62,7 @@ def main(USER, TOKEN, AID):
             shared_accounts = [account.get("name") for account in shared_accounts]
             shared_accounts = " - ".join(shared_accounts)
 
-            if agents_in_test is not None:
+            if agents_in_test:
                 agent_information = str()
                 for agent in agents_in_test:
                     agent_name = agent.get("agentName")
