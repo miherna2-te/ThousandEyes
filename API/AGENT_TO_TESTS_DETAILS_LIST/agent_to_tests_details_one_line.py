@@ -68,22 +68,22 @@ def main(USER, TOKEN, AID):
                     agent_name = agent.get("agentName")
                     agent_type = agent.get("agentType")
                     agent_information += f"{agent_name} [{agent_type}] - "
-                row = {
-                    "test_name": test.get("testName"),
-                    "test_id": test_id,
-                    "created": test.get("createdDate"),
-                    "modified": test.get("modifiedDate"),
-                    "modified_by": test.get("modifiedBy"),
-                    "test_type": test.get("type"),
-                    "protocol": test.get("protocol"),
-                    "url": test.get("url"),
-                    "enabled": test.get("enabled"),
-                    "alerts": test.get("alertsEnabled"),
-                    "agents_information": agent_information,
-                    "shared": shared_accounts,
-                }
-                writer.writerow(row)
-                print(row)
+            row = {
+                "test_name": test.get("testName"),
+                "test_id": test_id,
+                "created": test.get("createdDate"),
+                "modified": test.get("modifiedDate"),
+                "modified_by": test.get("modifiedBy"),
+                "test_type": test.get("type"),
+                "protocol": test.get("protocol"),
+                "url": test.get("url"),
+                "enabled": test.get("enabled"),
+                "alerts": test.get("alertsEnabled"),
+                "agents_information": agent_information,
+                "shared": shared_accounts,
+            }
+            writer.writerow(row)
+            print(row)
 
 
 if __name__ == "__main__":
