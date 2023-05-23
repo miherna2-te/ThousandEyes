@@ -42,7 +42,7 @@ Retrieves tests information from the ThousandEyes API for a specific account gro
 ## Execution
 Upon running the script, it prompts for your username and basic token for authentication. The script then fetches the account information using the `get_accounts()` function and displays it.
 
-A workbook is created to store the test information. The script generates a sheet named "ACCOUNTS" with the headers "AID" and "ACCOUNT_NAME". The headers are formatted with bold font and an orange background.
+A workbook is created to store the test information named **tests_tcp_info.xlsx**. The script generates a sheet named "ACCOUNTS" with the headers "AID" and "ACCOUNT_NAME". The headers are formatted with bold font and an orange background.
 
 For each account group, the script retrieves the corresponding tests using the `get_tests()` function. It creates a sheet for each account group (named after the account identifier) and populates it with the test details, including the headers "TEST_ID", "TEST_NAME", "TEST_TYPE", "PROTOCOL", "PROBE", and "PATH_TRACE_MODE". Similar to the "ACCOUNTS" sheet, the headers in each account sheet are formatted with bold font and an orange background.
 
