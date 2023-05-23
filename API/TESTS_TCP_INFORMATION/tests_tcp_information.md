@@ -6,7 +6,7 @@ This script allows you to analyze the tests for each account group in ThousandEy
 To run the script, use the following command:
 
 ```
-python test_info_excel.py
+python test_tcp_info.py
 ```
 
 ## Author
