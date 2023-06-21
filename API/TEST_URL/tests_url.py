@@ -103,13 +103,13 @@ def get_tests_url(username, token, accounts):
             writer = csv.writer(
                 csv_file,
             )
-            writer.writerow(["TEST_ID", "TEST_NAME", "URL"])
+            writer.writerow(["AID", "TEST_ID", "TEST_NAME", "URL"])
             for test in tests:
                 test_id = str(test.get("testId"))
                 test_name = str(test.get("testName"))
                 url = str(test.get("url"))
                 print(test_id, test_name, url)
-                writer.writerow([test_id, test_name, url])
+                writer.writerow([aid, test_id, test_name, url])
 
 
 if __name__ == "__main__":
