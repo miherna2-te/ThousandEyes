@@ -108,7 +108,7 @@ def get_tests_url(username, token, accounts):
                 test_id = str(test.get("testId"))
                 test_name = str(test.get("testName"))
                 url = str(test.get("url"))
-                print(test_id, test_name, url)
+                print(aid, test_id, test_name, url)
                 writer.writerow([aid, test_id, test_name, url])
 
 
